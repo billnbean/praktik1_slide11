@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praktik 1 · Refleksi Mandiri</title>
+<style>
+  :root {
+    --navy: #14284b;
+    --gold: #c9a227;
+    --paper: #fbf8ef;
+    --ink: #1d2433;
+    --muted: #5b6475;
+    --line: #e3dcc6;
+    --warn-bg: #fff4d6;
+    --ok: #1c6b3a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 15px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 14px 14px 22px; }
+  header {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    border-bottom: 4px solid var(--gold);
+  }
+  header small { color: var(--gold); letter-spacing: .08em; font-weight: 600; }
+  header h1 { margin: 2px 0 0; font-size: 18px; }
+
+  .steps { margin: 14px 0 10px; padding-left: 20px; }
+  .steps li { margin-bottom: 4px; }
+
+  .box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 10px 0;
+  }
+  .box h2 { margin: 0 0 6px; font-size: 15px; color: var(--navy); }
+  .hint { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
+  .grid .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  input, select, textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: #fffdf6;
+  }
+  textarea { min-height: 190px; resize: vertical; }
+  input:focus, select:focus, textarea:focus, button:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 1px;
+  }
+
+  button, .btn {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 8px;
+  }
+  button:hover, .btn:hover { background: #1d3a6e; }
+  .btn.gold { background: var(--gold); color: #14284b; }
+  .btn.gold:hover { background: #b8921f; }
+  #status { margin-left: 10px; color: var(--ok); font-weight: 600; font-size: 14px; }
+
+  .launch { border: 1px dashed var(--gold); text-align: center; padding: 16px 14px; }
+  .launch p { margin: 0 0 4px; }
+  .launch .btn { margin-top: 6px; font-size: 16px; padding: 11px 20px; }
+  .launch small { display: block; margin-top: 8px; color: var(--muted); }
+
+  .warn {
+    background: var(--warn-bg);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .fallback { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+  .nav { margin: 14px 0 0; }
+  @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <small>PRAKTIK 1</small>
+    <h1>Refleksi Mandiri &amp; Manajemen Energi Mental</h1>
+  </header>
+
+  <ol class="steps">
+    <li>Isi gambaran minggu Anda pada kolom di bawah. Prompt akan tersusun otomatis.</li>
+    <li>Tekan <strong>Salin prompt refleksi</strong>, lalu buka <strong>Genspark</strong> dan tempel prompt pada kotak percakapan.</li>
+    <li>Baca hasilnya sebagai bahan refleksi, lalu tuliskan kesimpulan Anda sendiri.</li>
+  </ol>
+
+  <div class="box">
+    <h2>1. Gambaran minggu Anda</h2>
+    <div class="grid">
+      <div class="full">
+        <label for="sesi">Jumlah sesi dan jam mengajar</label>
+        <input id="sesi" type="text" placeholder="contoh: 5 sesi, 12 jam per minggu">
+      </div>
+      <div class="full">
+        <label for="kuras">Hal yang paling menguras energi</label>
+        <input id="kuras" type="text" placeholder="contoh: menyusun laporan, murid yang sering absen">
+      </div>
+      <div class="full">
+        <label for="pulih">Hal yang biasanya memulihkan</label>
+        <input id="pulih" type="text" placeholder="contoh: berjalan sore, mengobrol dengan keluarga">
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>2. Prompt refleksi siap tempel</h2>
+    <p class="hint">Teks di bawah ini ditulis untuk AI, bukan untuk Anda: kata "kamu" menunjuk ke AI dan "saya" menunjuk ke Anda. Bagian yang masih berupa [ ] belum Anda isi.</p>
+    <textarea id="prompt" spellcheck="false"></textarea>
+    <button type="button" id="salin">Salin prompt refleksi</button><span id="status" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="box launch">
+    <h2>3. Buka chatbot AI</h2>
+    <p>Tempel prompt pada kotak percakapan di Genspark.</p>
+    <a class="btn gold" href="https://www.genspark.ai/id" target="_blank" rel="noopener">Buka Genspark di tab baru</a>
+    <small>Genspark mungkin meminta Anda masuk (login). Setelah selesai, kembali ke e-book lalu tekan <em>Lanjut ke Rangkuman</em>.</small>
+  </div>
+
+  <div class="warn">
+    <strong>Ingat:</strong> hasil AI adalah bahan refleksi, bukan diagnosis. Cukup tulis gambaran umum, tanpa nama atau data pribadi (milik Anda maupun orang lain). Jika Anda merasa sangat tertekan, hubungi tenaga profesional.
+  </div>
+
+  <p class="nav"><a class="btn" href="praktik2-rpp-generator-genspark.html">Lanjut ke Praktik 2: Merancang RPP</a></p>
+
+  <p class="fallback">
+    Tombol di atas tidak terbuka? Salin alamat ini ke peramban Anda: <strong>www.genspark.ai/id</strong>
+  </p>
+
+</div>
+
+<script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var area = $('prompt');
+    var status = $('status');
+    var edited = false;
+
+    function isi(v, placeholder) {
+      v = (v || '').trim();
+      return v ? v : '[' + placeholder + ']';
+    }
+
+    function susun() {
+      area.value =
+        'Peran: Kamu adalah teman refleksi yang suportif, bukan psikolog.\n' +
+        'Konteks: Saya pendidik PNF. Minggu saya: ' + isi($('sesi').value, 'jumlah sesi dan jam mengajar') +
+        '; paling menguras energi: ' + isi($('kuras').value, 'hal yang paling menguras energi') +
+        '; biasanya memulihkan: ' + isi($('pulih').value, 'hal yang biasanya memulihkan') + '.\n' +
+        'Tugas: Dengan empat komponen Baumeister (Standar, Motivasi, Pemantauan, Energi Mental), ' +
+        'bantu saya mengenali tanda kelelahan mental. Berikan (1) tabel tanda yang saya alami, ' +
+        '(2) tingkat kelelahan (rendah/sedang/tinggi) sebagai bahan refleksi, ' +
+        '(3) tiga strategi pemulihan untuk 7 hari ke depan.\n' +
+        'Batasan: Tanpa diagnosis medis. Jika tanda berat, sarankan saya menemui tenaga profesional. ' +
+        'Tulis dalam Bahasa Indonesia.';
+    }
+
+    ['sesi', 'kuras', 'pulih'].forEach(function (id) {
+      $(id).addEventListener('input', function () { if (!edited) susun(); });
+    });
+    area.addEventListener('input', function () { edited = true; });
+    susun();
+
+    function tampil(pesan) {
+      status.textContent = pesan;
+      setTimeout(function () { status.textContent = ''; }, 3500);
+    }
+    function cadangan() {
+      area.focus();
+      area.select();
+      try {
+        var ok = document.execCommand('copy');
+        tampil(ok ? 'Tersalin.' : 'Teks terpilih. Tekan Salin pada menu (Ctrl+C).');
+      } catch (e) {
+        tampil('Teks terpilih. Tekan Salin pada menu (Ctrl+C).');
+      }
+    }
+    $('salin').addEventListener('click', function () {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(area.value).then(function () { tampil('Tersalin.'); }, cadangan);
+      } else { cadangan(); }
+    });
+  })();
+</script>
+</body>
+</html>
